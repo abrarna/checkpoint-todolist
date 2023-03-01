@@ -1,9 +1,10 @@
 import React from "react";
-import { deleteTask } from "../redux/actions/todoactions";
+import { complited, deleteTask } from "../redux/actions/todoactions";
 import { useDispatch } from "react-redux";
 const Task = ({ task }) => {
   const { taskName, id, isDone } = task;
   const dispatch = useDispatch();
+  const onClicked = () => dispatch(complited(id));
   const onClick = (e) => {
     if (e.target.id === "delete") {
       dispatch(deleteTask(id));
@@ -31,6 +32,7 @@ const Task = ({ task }) => {
           <i
             class="fa-solid fa-square-check"
             style={{ border: 1, padding: 5, "border-spacing": 10 }}
+            onClick={onClicked}
           ></i>
         </div>
       </li>

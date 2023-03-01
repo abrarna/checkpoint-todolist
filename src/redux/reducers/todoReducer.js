@@ -1,4 +1,4 @@
-import { ADDTASK, DELETETASK } from "../actions/types";
+import { ADDTASK, COMPLITED, DELETETASK } from "../actions/types";
 
 const initialsate = {
   tasks: [
@@ -21,6 +21,13 @@ const todoReducer = (state = initialsate, { type, payload }) => {
       return {
         ...state,
         tasks: state.tasks.filter((task) => task.id !== payload),
+      };
+    case COMPLITED:
+      return {
+        ...state,
+        tasks: state.tasks.map((task) =>
+          task.id === payload ? { ...task, isDone: !task.isDone } : task
+        ),
       };
 
     default:
